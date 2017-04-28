@@ -1,75 +1,70 @@
 ---
 layout: page
-title: "文章"
-description: ""
+title: "归档"
+description: "Done is better than perfect"
 header-img: "img/article-bg.jpeg"
 ---
 
-<!-- Chinese Version -->
-<div class="zh post-container">
 
+<div class="article-content">
+    <section class="article-timeline">
+        <span class="timeline-circle"></span>
+        <span class="timeline-account">目前共计&nbsp;{{site.posts.size}}&nbsp;篇文章</span>
+        <div>
+            {% for post in site.posts  %}
+                {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+                {% capture this_month %}{{ post.date | date: "%m" }}{% endcapture %}
+                {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
+                {% capture next_month %}{{ post.previous.date | date: "%m" }}{% endcapture %}
+                {% capture next_title %}{{ post.previous.title }}{% endcapture %}
+                {% capture next_date %}{{ post.previous.date | date: "%Y-%m-%d" }}{% endcapture %}
+                {% capture next_url %}{{ post.previous.url }}{% endcapture %}
+                {% if forloop.index < forloop.length %}
+                    {% if forloop.first %}
+                        <h2 class="timeline-year">{{ this_year }}</h2>
+                        <h3 class="timeline-date"><span>{{ this_month }}</span></h3>
+                        <ul>
+                        <li class="timeline-article">
+                            <a href="{{ post.url | prepend: site.baseurl }}"><time>{{ post.date | date: "%Y-%m-%d" }}</time>{{ post.title }}</a>
+                        </li>
+                    {% endif %}
+                    {% if this_year != next_year %}
+                    </ul>
+                    <h2 class="timeline-year">{{ next_year }}</h2>
+                    <h3 class="timeline-date"><span>{{ next_month }}</span></h3>
+                    <ul>
+                        <li class="timeline-article">
+                            <a href="{{ next_url | prepend: site.baseurl }}"><time>{{ next_date }}</time>{{ next_title }}</a>
+                        </li>
+                    {% else %}
+                        {% if this_month != next_month %}
+                            </ul>
+                            <h3 class="timeline-date"><span>{{ next_month }}</span></h3>
+                            <ul>
+                            <li class="timeline-article">
+                                <a href="{{ next_url | prepend: site.baseurl }}"><time>{{ next_date }}</time>{{ next_title }}</a>
+                            </li>
+                        {% else %}
+                            <li class="timeline-article">
+                                <a href="{{ next_url | prepend: site.baseurl }}"><time>{{ next_date }}</time>{{ next_title }}</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+                {% if forloop.last %}
+                </ul>
+                {% endif %}
+                {% if forloop.length == 1%}
+                    <h2 class="timeline-year">{{ this_year }}</h2>
+                    <h3 class="timeline-date"><span>{{ this_month }}</span></h3>
+                    <ul>
+                        <li class="timeline-article">
+                            <a href="{{ post.url | prepend: site.baseurl }}"><time>{{ post.date | date: "%Y-%m-%d" }}</time>{{ post.title }}</a>
+                        </li>
+                    </ul>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
 </div>
 
-
-
-{% if site.duoshuo_username %}
-<!-- 多说评论框 start -->
-<div class="comment">
-    <div class="ds-thread"
-    {% if site.duoshuo_username == "huxblog" %}
-        data-thread-id="1187623191091085319"
-    {% else %}
-        data-thread-key="{{site.duoshuo_username}}/about"
-    {% endif %}
-
-    data-title="{{page.title}}"
-    data-url="{{site.url}}/about/"></div>
-</div>
-<!-- 多说评论框 end -->
-
-<!-- Duoshuo hacking -->
-<input id="dsUser" type="hidden" value="{{site.duoshuo_username}}"  />
-
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    // dynamic User hacking by Hux
-    var _user = document.getElementById('dsUser').value;
-    // duoshuo comment query.
-    var duoshuoQuery = {short_name: _user };
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0]
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-</script>
-<!-- 多说公共JS代码 end -->
-{% endif %}
-
-
-{% if site.disqus_username %}
-<!-- disqus 评论框 start -->
-<div class="comment">
-    <div id="disqus_thread" class="disqus-thread">
-
-    </div>
-</div>
-<!-- disqus 评论框 end -->
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "{{site.disqus_username}}";
-    var disqus_identifier = "{{site.disqus_username}}/{{page.url}}";
-    var disqus_url = "{{site.url}}{{page.url}}";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-{% endif %}

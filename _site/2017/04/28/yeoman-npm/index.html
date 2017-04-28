@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Welcome to Rabbit Blog - Rabbit Blog</title>
+    <title>yeoman简介与npm发包 - Rabbit Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/2017/04/08/test/">
+    <link rel="canonical" href="http://localhost:4000/2017/04/28/yeoman-npm/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -83,7 +83,7 @@
                     </li>
                     
                     <li>
-                        <a href="/article/">文章</a>
+                        <a href="/article/">归档</a>
                     </li>
                     
                     <li>
@@ -142,17 +142,21 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <div class="tags">
-                        
-                        <a class="tag" href="/tags/#生活" title="生活">生活</a>
-                        
-                    </div>
-                    <h1>Welcome to Rabbit Blog</h1>
-                    
-                    
-                    <h2 class="subheading"> "Hello World, Hello Blog"</h2>
-                    
-                    <span class="meta">Posted by Rabbit on April 8, 2017</span>
+                    <h1 class="article-title">yeoman简介与npm发包</h1>
+                    <h2 class="subheading"></h2>
+                    <p class="meta">
+                        <span>发表于: 2017-04-28</span>
+                        <span> 作者: Rabbit</span>
+                        <span class="tags">
+                            
+                                <a class="tag" href="/tags/#yeoman" title="yeoman">yeoman</a>
+                            
+                                <a class="tag" href="/tags/#npm" title="npm">npm</a>
+                            
+                                <a class="tag" href="/tags/#学习" title="学习">学习</a>
+                            
+                        </span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -170,60 +174,110 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<blockquote>
-  <p>“Yeah It’s on. ”</p>
-</blockquote>
+                <h1 id="yeoman">YEOMAN</h1>
+<p>yeoman脚手架工具
+Generators: 通过<code class="highlighter-rouge">yo</code>命令来生成文件</p>
+<h2 id="组织自己的generators">组织自己的generators</h2>
+<h3 id="设置为一个node-module">设置为一个node module</h3>
+<p>generator的核心就是node模块</p>
 
-<h2 id="hello-world">hello world</h2>
+<ol>
+  <li>创建一个名为’generator-XX’的文件夹。
+    <ul>
+      <li>Yeoman会依旧依赖稳健系统查找可用的generators</li>
+    </ul>
+  </li>
+  <li>文件中创建<code class="highlighter-rouge">package.json</code>文件
+    <ul>
+      <li>可以使用<code class="highlighter-rouge">npm init</code>创建</li>
+      <li>name必须要有<code class="highlighter-rouge">generator-</code>前缀</li>
+      <li>关键字<code class="highlighter-rouge">keywords</code>必须是<code class="highlighter-rouge">yeoman-generator</code></li>
+      <li>必须确保使用最新版本的<code class="highlighter-rouge">yeoman-generator</code>
+        <ul>
+          <li><code class="highlighter-rouge">npm install --save yeoman-generator</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>文件目录
+    <ul>
+      <li>可以使用<code class="highlighter-rouge">git clone</code><a href="https://github.com/yeoman/generator-generator">generator-generator</a>该项目，参考其内容</li>
+    </ul>
+  </li>
+  <li>扩展generator
+    <ul>
+      <li>扩展基础generator
+        <div class="highlighter-rouge"><pre class="highlight"><code>      var Generator = require('yeoman-generator');
+      module.exports = class extends Geneator{};
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li>覆盖constructor方法
+    <div class="highlighter-rouge"><pre class="highlight"><code>constructor(args, opts) {
+   super(args, opts);
+   this.option('babel');
+}
+</code></pre>
+    </div>
+  </li>
+  <li>添加自己的功能
+    <div class="highlighter-rouge"><pre class="highlight"><code> module.exports = class extends Generator {
+    // overwrite constructor
+    constructor(args, opts) {
+       super(args, opts);
+       this.option('babel');
+    }
+	   
+    method1() {
+       this.log('method 1 just ran');
+    }
+	   
+    method2() {
+       this.log('method 2 just ran');
+    }
+ };
+</code></pre>
+    </div>
+  </li>
+  <li>运行generator
+    <ul>
+      <li>本地开发generator，不能作为全局npm module使用</li>
+      <li>使用npm创建全局module,并且和本地的建立链接</li>
+      <li>文件根目录下，运行<code class="highlighter-rouge">npm link</code>
+        <ul>
+          <li>运行此命令之前需要进行npm发包，发包过程如下</li>
+        </ul>
+      </li>
+      <li>link成功之后使用<code class="highlighter-rouge">yo name</code></li>
+      <li><em>踩坑</em>
+        <ul>
+          <li><code class="highlighter-rouge">yo name</code>命令中一定要使用name,而创建自己的generator必须要以generator-为前缀，即文件名为<code class="highlighter-rouge">generator-name</code>。则使用<code class="highlighter-rouge">yo name</code>的时候，只使用后面的name</li>
+          <li>执行<code class="highlighter-rouge">yo name</code>之前，要保证yo和generator-name安装在同一目录下，如yo是全局安装，则generator-name也要是全局安装。<em>yo XXX 的时候，在yo里要执行require(‘generator-XXX’)，因此位置必须统一</em></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="npm发包">npm发包</h1>
+<ol>
+  <li>注册账号</li>
+  <li>添加package.json文件，发包
+    <ul>
+      <li>npm publish</li>
+      <li>踩坑: 因为使用了公司npm镜像，然后莫名一直安装失败，只有使用<code class="highlighter-rouge">npm config set registry https://registry.npmjs.org/</code>之后，再进行<code class="highlighter-rouge">npm publish</code>才能成功</li>
+      <li>心得: 一定要看log文件，比在网上查好得多！！</li>
+    </ul>
+  </li>
+</ol>
 
 
-                <hr>
-
-                
-
-
-                <ul class="pager">
-                    
-                    
-                </ul>
-
-
-                
-
-                
-
-            </div>
-
-    <!-- Sidebar Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-        				
-                            
-        				
-        			</div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
             </div>
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 
