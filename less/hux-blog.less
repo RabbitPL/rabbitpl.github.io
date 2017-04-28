@@ -1032,7 +1032,13 @@ body {
 
 
 .article-content {
-	margin-left: -12%;
+	@media only screen and (min-width: 1170px) {
+		margin-right: 5px;
+		.timeline-date > span {
+			left: -8%;
+		}
+	}
+
 	margin-top: 15px;
 
 	.article-timeline {
@@ -1046,8 +1052,6 @@ body {
 			list-style: none;
 
 			li {
-				//border-bottom: 1px dashed #ccc;
-
 				margin-bottom: 30px;
 				margin-top: 10px;
 				font-size: 14px;
@@ -1118,9 +1122,8 @@ body {
 			border-radius: 50%;
 		}
 
-		.timeline-date > span{
+		.timeline-date > span {
 			position: relative;
-			left: -8%;
 			font-size: 16px;
 		}
 		.timeline-date:before {

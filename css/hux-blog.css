@@ -1000,8 +1000,15 @@ body {
   color: #ddd;
 }
 .article-content {
-  margin-left: -12%;
   margin-top: 15px;
+}
+@media only screen and (min-width: 1170px) {
+  .article-content {
+    margin-right: 5px;
+  }
+  .article-content .timeline-date > span {
+    left: -8%;
+  }
 }
 .article-content .article-timeline {
   position: relative;
@@ -1079,7 +1086,6 @@ body {
 }
 .article-content .article-timeline .timeline-date > span {
   position: relative;
-  left: -8%;
   font-size: 16px;
 }
 .article-content .article-timeline .timeline-date:before {
