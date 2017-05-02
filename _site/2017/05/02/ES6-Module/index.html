@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="有点理性，有点感性，有点执着，有点懒散，有点认真，有点浪的一枚普通程序媛">
+    <meta name="keyword"  content="">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>ES6-Module学习 - Rabbit Blog</title>
+
+    <link rel="canonical" href="http://localhost:4000/2017/05/02/ES6-Module/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">rabbit</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">主页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">关于</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/article/">归档</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">标签</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-2015.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/post-bg-2015.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1 class="article-title">ES6-Module学习</h1>
+                    <h2 class="subheading"></h2>
+                    <p class="meta">
+                        <span>发表于: 2017-05-02</span>
+                        <span> 作者: Rabbit</span>
+                        <span class="tags">
+                            
+                                <a class="tag" href="/tags/#ES6" title="ES6">ES6</a>
+                            
+                                <a class="tag" href="/tags/#基础整理" title="基础整理">基础整理</a>
+                            
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="module">Module</h1>
+<h2 id="背景">背景</h2>
+<ul>
+  <li>ES6的Class只是面向对象编程的语法糖，升级了ES5构造函数原型继承的写法，并没有解决模块化的问题。</li>
+  <li>Js一直没有模块体系，无法将一个大程序拆分成互相依赖的小文件，再用简单方法拼装起来，因此对开发大型的、复杂项目形成障碍。</li>
+  <li>es6之前，模块化加载方案，主要有COmmonJS(用于服务器)和AMD(用于浏览器)两种.</li>
+</ul>
+
+<h2 id="产生">产生</h2>
+<h3 id="基本概念">基本概念</h3>
+<ul>
+  <li>运行时加载: 整体加载一个模块(即加载所有方法)，生成一个对象，然后从对象上读取方法。</li>
+  <li>编译时加载: 从模块中加载需要使用的方法，其它方法都不加载。</li>
+</ul>
+
+<h3 id="与传统模块化方法的区别">与传统模块化方法的区别</h3>
+<ul>
+  <li>es6实现的模块功能完全取代了现有的COmmonJS和AMD,成为通用的模块解决方案。</li>
+  <li>es6设计思想是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量，而CommonJS和AMD只能在运行的时候确定。</li>
+  <li>
+    <p>es6模块不是对象，而是通过export命令显示指定输出的代码，输入时也采用静态命令的形式。</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // ES6模块,实质是从fs模块加载3个方法，其他方法不加载
+  import { stat, exists, readFile } from 'fs';
+</code></pre>
+    </div>
+  </li>
+  <li>es6在编译时完成模块加载，效率比CommonJS模块的加载方式高，这也导致无法引用ES6模块本身那个，因为它不是对象。</li>
+  <li>es6在编译时加载，使得静态分析成为可能</li>
+</ul>
+
+<h3 id="模块的优点">模块的优点</h3>
+<ul>
+  <li>静态加载；</li>
+  <li>不再需要UMD模块格式(将来浏览器都会支持ES6模块格式)</li>
+  <li>将来浏览器的新API就能用模块格式提供，不必再做成全局变量或navigator对象的属性</li>
+  <li>不再需要对象作为命名空间(比如Math对象)，未来这些功能可以通过模块提供</li>
+</ul>
+
+<h3 id="基本用法">基本用法</h3>
+<ul>
+  <li>浏览器使用es6模块的语法: <script type="module" src="XX.js"></script>
+    <ul>
+      <li>由于type属性为module， 所以浏览器知道这是一个es6模块。</li>
+    </ul>
+  </li>
+  <li>备注
+    <ul>
+      <li>Node的默认模块格式是CommonJS，目前还没决定怎么支持ES6模块，因此只能用babel这样的转码器在Node中使用ES6模块。</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="特性">特性</h2>
+<h3 id="严格模式">严格模式</h3>
+<ul>
+  <li>ES6模块自动采用严格模式，不管头部有没有加’use strict’</li>
+  <li><a href="http://xgfe.github.io/Basics/JavaScript/strictMode.html">严格模式主要限制</a></li>
+</ul>
+
+<h3 id="export命令">export命令</h3>
+<ul>
+  <li>模块功能主要由两个命令构成:export和import。
+    <ul>
+      <li>export命令用于规定模块的对外接口。</li>
+      <li>import命令用于输入其他模块提供的功能。</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="export">export</h4>
+<ul>
+  <li>作用:一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。如果希望外部能够读取模块内部的某个变量，就必须使用export关键字输出该变量。</li>
+  <li>使用
+    <ul>
+      <li>使用大括号指定所要输出的一组变量
+        <div class="highlighter-rouge"><pre class="highlight"><code>  // 方法一:直接export
+  export var firstName = 'Michael';
+  export var lastName = 'Jackson';
+  export var year = 1958;
+        
+  // 方法二: 使用{}export
+  var firstName = 'Michael';
+  var lastName = 'Jackson';
+  var year = 1958;
+  export {firstName, lastName, year};
+</code></pre>
+        </div>
+      </li>
+      <li>export除了输出变量，还可以输出函数或类
+        <div class="highlighter-rouge"><pre class="highlight"><code>  // 对外输出了multiply
+  export function multiply(x, y) {
+    return x * y;
+  };
+</code></pre>
+        </div>
+      </li>
+      <li>一般情况下export输出的变量就是本来的名字，但可以使用as关键字重命名，并且重命名后可以使用不同的名字输出两次。
+        <div class="highlighter-rouge"><pre class="highlight"><code>  function v1() { ... }
+  function v2() { ... }
+  export {
+    v1 as streamV1,
+    v2 as streamV2,
+    v2 as streamLatestVersion
+  };
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li>备注
+    <ul>
+      <li>export命令规定的是对外的接口，必须与模块内部的变量建立一一对应关系。
+        <ul>
+          <li>它们的实质是，在接口名与模块内部变量之间，建立了一一对应的关系
+            <div class="highlighter-rouge"><pre class="highlight"><code>  // 报错
+  export 1;	
+  // 报错
+  var m = 1;
+  export m;
+            
+  // 正确写法
+  // 写法一
+  export var m = 1;
+        
+  // 写法二
+  var m = 1;
+  export {m};
+            
+  // 写法三
+  var n = 1;
+  export {n as m};
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li>export语句输出的接口，与其对应的值是动态绑定关系，即通过该接口，可以取到模块内部实时的值
+        <div class="highlighter-rouge"><pre class="highlight"><code>  export var foo = 'bar';
+  setTimeout(() =&gt; foo = 'baz', 500);
+</code></pre>
+        </div>
+      </li>
+      <li>export命令可以出现在模块的任何位置。如果处于块级作用域内就会报错，因为处于条件代码块之中，就没法做静态优化了，违背了ES6模块的设计初衷。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="import命令">import命令</h3>
+<ul>
+  <li>作用:使用export命令定义模块的对外接口后，其他JS文件可以通过import命令加载这个模块(文件)
+    <div class="highlighter-rouge"><pre class="highlight"><code>  import {firstName, lastName, year} from './profile';
+  function setName(element) {
+    element.textContent = firstName + ' ' + lastName;
+  }
+</code></pre>
+    </div>
+  </li>
+  <li>备注
+    <ul>
+      <li>import的{}里面的变量名必须与被导入模块对外接口(export)的名称相同</li>
+      <li>如果想为输入的变量重新取一个名字，import命令要使用as关键字，将输入的变量重命名
+        <div class="highlighter-rouge"><pre class="highlight"><code>  import { lastName as surname } from './profile';
+</code></pre>
+        </div>
+      </li>
+      <li>import命令具有提升效果，会提升到整个模块的头部，首先执行。</li>
+      <li>如果在一个模块中，先输入后输出同一个模块，import语句可以与export语句写在一起.但从可读性考虑，不建议这种写法。
+        <div class="highlighter-rouge"><pre class="highlight"><code>  export { es6 as default } from './someModule';
+  // 等同于
+  import { es6 } from './someModule';
+  export default es6;
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="模块的整体加载">模块的整体加载</h3>
+<ul>
+  <li>除了指定加载某个输出值，可以使用整体加载，即用星号(*)指定一个对象，所有输出值都加载在这个对象上面
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // file1.js,导出方法
+  export function area(radius) {
+    return Math.PI * radius * radius;
+  }
+  export function circumference(radius) {
+    return 2 * Math.PI * radius;
+  }
+  // file2.js,加载方法
+  // 指定加载
+  import { area, circumference } from './circle';
+  console.log('圆面积：' + area(4));
+  console.log('圆周长：' + circumference(14));
+  // 整体加载
+  import * as circle from './circle';
+  console.log('圆面积：' + circle.area(4));
+  console.log('圆周长：' + circle.circumference(14));
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="export-default命令">export default命令</h3>
+<ul>
+  <li>以上内容使用inport命令的时候，用户需要知道所有加载的变量名或函数名，否则无法加载。</li>
+  <li>export default命令为模块指定默认输出，不用阅读文档就能加载模块;其他模块加载时,import命令可为该匿名函数指定任意名字。
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // 默认输出一个函数
+  export default function(){
+      console.log('default export');
+  }
+  // 加载默认export文件
+  import customName from './export-default';
+  customName(); // 'foo'
+</code></pre>
+    </div>
+  </li>
+  <li>export default命令用在非匿名函数前，也是可以的。</li>
+  <li>export * 命令会忽略导入模块中通过export default导出内容</li>
+  <li>使用default，注意import后面不要使用{}。即使用export default时，对应的import语句不需要使用大括号；不使用export default时，对应的import语句需要使用大括号。
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // 输出
+  export default function defaultFn() {
+    // ...
+  }
+  // 输入
+  import defaultFn from 'defaultFn';
+    
+  // 输出
+  export function defaultFn() {
+    // ...
+  };
+  // 输入
+  import {defaultFn} from 'defaultFn';
+</code></pre>
+    </div>
+  </li>
+  <li>export default命令用于指定模块的默认输出，一个模块只能有一个默认输出。</li>
+  <li>本质上export default是输出一个叫做default的变量或方法，然后系统允许可以取任意名字
+    <div class="highlighter-rouge"><pre class="highlight"><code>  function add(x, y) {
+    return x * y;
+  }
+  export {add as default};  // 等同于  export default add;
+    
+  // app.js
+  import { default as xxx } from 'modules'; // 等同于 import xxx from 'modules';
+</code></pre>
+    </div>
+  </li>
+  <li>export default命令其事输出一个default的变量，因此其后不能跟变量声明语句
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // 正确
+  export var a = 1;
+  // 正确
+  var a = 1;
+  export default a;
+  // 错误
+  export default var a = 1;
+</code></pre>
+    </div>
+  </li>
+  <li>一条import语句中，可以同时输入默认方法和其他变量
+    <div class="highlighter-rouge"><pre class="highlight"><code>  import customName, { otherMethod } from './export-default';
+</code></pre>
+    </div>
+  </li>
+  <li>如果要输出默认的值，只需将值跟在export default之后即可
+    <div class="highlighter-rouge"><pre class="highlight"><code>  export default 42;
+</code></pre>
+    </div>
+  </li>
+  <li>export default也可以用来输出类
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // MyClass.js
+  export default class { ... }
+  // main.js
+  import MyClass from 'MyClass';
+  let o = new MyClass();
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="模块的继承">模块的继承</h3>
+<ul>
+  <li>模块之间也可以继承
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // circleplus.js(假设circleplus模块继承circle模块)
+  // 方法一
+  export * from 'circle';  // 输出继承来的所有circle模块的属性和方法，忽略default方法
+  export var e = 2.71828182846;
+  export default function(x) {
+    return Math.exp(x);
+  }
+  // 方法二
+  export { area as circleArea } from 'circle'; // 将circle的属性或方法改名后再输出
+    
+  // 加载上面circleplus模块
+  // main.js
+  import * as math from 'circleplus';  // 加载所有属性和方法
+  import exp from 'circleplus';  // 加载默认方法为exp
+  console.log(exp(math.e));
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="es6模块加载的实质">ES6模块加载的实质</h3>
+<ul>
+  <li>CommonJS模块输出的是一个值的拷贝，而ES6模块输出的是值的引用</li>
+  <li>CommonJS模块输出的是被输出值的拷贝，也就是说，一旦输出一个值，模块内部的变化就影响不到这个值。</li>
+  <li>ES6模块的运行机制是遇到模块加载命令import时，不会去执行模块，而是只生成一个动态的只读引用。等到真的需要用到时，再到模块里面去取值。</li>
+  <li>ES6模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // lib.js
+  export let counter = 3;
+  export function incCounter() {
+    counter++;
+  }
+  // main.js
+  import { counter, incCounter } from './lib';
+  console.log(counter); // 3
+  incCounter();
+  console.log(counter); // 3
+</code></pre>
+    </div>
+    <ul>
+      <li>以上test模块加载后，它的内部变化就影响不到输出的counter了。这是因为counter是一个原始类型的值，会被缓存。除非写成一个函数，才能得到内部变动后的值。
+        <div class="highlighter-rouge"><pre class="highlight"><code>  // lib.js
+  var counter = 3; 		function incCounter() {     		counter++; 		} 		module.exports = {     		get counter() {         		return counter     		},     		incCounter: incCounter 		}
+  // main.js
+  import { counter, incCounter } from './lib';
+  console.log(counter); // 3
+  incCounter();
+  console.log(counter); // 4
+</code></pre>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li>ES6模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // 实例一
+  // lib.js
+  export let counter = 3; 	export function incCounter() { 		counter++; 	}
+  // main.js
+  import { counter, incCounter } from './lib';
+  console.log(counter); // 3
+  incCounter();
+  console.log(counter); // 4
+
+  // 实例二
+  // m1.js
+  export var foo = 'bar';
+  setTimeout(() =&gt; foo = 'baz', 500);
+  // m2.js
+  import {foo} from './m1.js';
+  console.log(foo);
+  setTimeout(() =&gt; console.log(foo), 500);
+</code></pre>
+    </div>
+  </li>
+  <li>由于ES6输入的模块变量，只是一个“符号连接”，所以这个变量是只读的，对它进行重新赋值会报错。
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // lib.js
+  export let obj = {};
+  // main.js
+  import { obj } from './lib';
+  obj.prop = 123; // OK
+  obj = {}; // TypeError:babel-compile都不会通过
+</code></pre>
+    </div>
+  </li>
+  <li>export通过接口，输出的是同一个值。不同的脚本加载这个接口，得到的都是同样的实例
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // mod.js
+  function C() {
+    this.sum = 0;
+    this.add = function () {
+      this.sum += 1;
+    };
+    this.show = function () {
+      console.log(this.sum);
+    };
+  }
+  export let c = new C();
+  // x.js
+  import {c} from './mod';
+  c.add();	
+  // y.js
+  import {c} from './mod';
+  c.show();
+  // main.js
+  import './x';
+  import './y';
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="循环加载">循环加载</h3>
+
+<p>“循环加载”（circular dependency）指的是，a脚本的执行依赖b脚本，而b脚本的执行又依赖a脚本。</p>
+
+<p>“循环加载”表示存在强耦合，如果处理不好，还可能导致递归加载，使得程序无法执行，因此应该避免出现。
+ 目前最常见的两种模块格式CommonJS和ES6，处理“循环加载”的方法是不一样的，返回的结果也不一样。</p>
+
+<h4 id="commonjs模块的加载原理">CommonJS模块的加载原理</h4>
+<p>CommonJS的一个模块，就是一个脚本文件。require命令第一次加载该脚本，就会执行整个脚本，然后在内存生成一个对象。之后即使再次执行require命令，也不会再次执行该模块，而是到缓存之中取值。</p>
+<div class="highlighter-rouge"><pre class="highlight"><code> // Node内部加载模块后生成的一个对象
+ {
+      id: '...',   // 加载模块名
+      exports: { ... },  // 模块输出的各个接口
+      loaded: true,  // 布尔值，表示该模块的脚本是否执行完毕
+      ...
+ }
+</code></pre>
+</div>
+<ul>
+  <li>CommonJS模块无论加载多少次，都只会在第一次加载时运行一次，以后再加载，就返回第一次运行的结果，除非手动清除系统缓存。</li>
+</ul>
+
+<h4 id="commonjs模块的循环加载">CommonJS模块的循环加载</h4>
+<p>CommonJS模块的重要特性是加载时执行，即脚本代码在require的时候，就会全部执行。一旦出现某个模块被”循环加载”，就只输出已经执行的部分，未执行的部分不会输出。
+    ````
+    // a.js
+    console.log(‘a starting’);
+    exports.done = false;
+    const b = require(‘./b.js’);
+    console.log(‘in a, b.done = %j’, b.done);
+    exports.done = true;
+    console.log(‘a done’);</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>//b.js
+console.log('b starting');
+exports.done = false;
+const a = require('./a.js');  //此时只执行a.js的第一行，发生循环加载，系统会去a.js模块对应对象的exports取值，但还没执行完，因此只能取部分值(一旦require就会生成对象，然后一步步执行，同时往对象加值)。
+console.log('in b, a.done = %j', a.done);
+exports.done = true;
+console.log('b done');
+
+// main.js
+console.log('main starting');
+const a = require('./a.js');
+const b = require('./b.js');  // 已经加载，只会从缓存中取值
+console.log('in main, a.done=%j, b.done=%j', a.done, b.done);
+
+// 执行结果
+main starting
+a starting
+b starting
+in b, a.done = false
+b done
+in a, b.done = true
+a done
+in main, a.done=true, b.done=true
+``` - 备注
+- 由于CommonJS模块遇到循环加载时，返回的是当前已经执行的部分的值，而不是代码全部执行后的值，两者可能会有差异 
+</code></pre>
+</div>
+
+<h4 id="es6模块的循环加载">ES6模块的循环加载</h4>
+
+<p>ES6模块是动态引用，如果使用import从一个模块加载变量，那些变量不会被缓存，而是成为一个指向被加载模块的引用</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    // a.js如下
+    import {bar} from './b.js';  //加载b，所以先执行b.js
+    console.log('a.js');  // 加载a，但是a已经在执行了，所以不会重复执行，因此继续往下执行b.js
+    console.log(bar);
+    export let foo = 'foo';
+    
+    // b.js
+    import {foo} from './a.js';
+    console.log('b.js');
+    console.log(foo);
+    export let bar = 'bar';
+    
+    // 执行结果
+    b.js
+    undefined
+    a.js
+    bar
+</code></pre>
+</div>
+
+<ul>
+  <li>
+    <p>考考你</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // a.js
+  import {bar} from './b.js';  // 建立引用，从b.js引用‘bar’
+  export function foo() {
+    console.log('foo');
+    bar();  // 到b.js执行bar
+    console.log('执行完毕');
+  }
+  foo();  // 执行时，引用都已完全建立
+    
+  // b.js
+  import {foo} from './a.js';  // 建立引用，从a.js引用foo
+  export function bar() {
+    console.log('bar');
+    if (Math.random() &gt; 0.5) { // 递归执行foo，一旦随机数小于等于0.5就停止执行
+      foo();
+    }
+  }
+    
+  // 执行结果
+  // Math.random() &lt;= 0.5
+  foo
+  bar
+  执行完毕
+    
+  // Math.random() &gt; 0.5
+  foo
+  bar
+  foo
+  bar
+  执行完毕
+  执行完毕
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p><a href="https://github.com/ModuleLoader/es6-module-loader/blob/master/docs/circular-references-bindings.md">如何测试例子</a></p>
+  </li>
+</ul>
+
+<h3 id="跨模块常量">跨模块常量</h3>
+
+<p>const声明的常量只在当前代码块有效。如果想设置跨模块的常量（即跨多个文件），可讲常量设置为一个单独的模块，可用以下代码实现</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>// constants.js 模块
+export const A = 1;
+export const B = 3;
+export const C = 4;
+
+// test1.js 模块
+import * as constants from './constants';
+console.log(constants.A); // 1
+console.log(constants.B); // 3
+
+// test2.js 模块
+import {A, B} from './constants';
+console.log(A); // 1
+console.log(B); // 3
+</code></pre>
+</div>
+
+<h3 id="es6模块的转码">ES6模块的转码</h3>
+<p>浏览器目前还不支持ES6模块，现在要使用需要将其转换为ES5写法，有三种方法：</p>
+<ul>
+  <li>使用Babel</li>
+  <li>ES6 module transpiler
+    <ul>
+      <li>定义:square公司开源的一个转码器，可以将ES6模块转为CommonJS模块或AMD模块的写法，从而在浏览器中使用。</li>
+      <li>使用
+        <ul>
+          <li>安装这个转码器:  npm install -g es6-module-transpiler</li>
+          <li>文件转码: 使用compile-modules convert命令转码，-o参数可以指定转码后文件名
+            <div class="highlighter-rouge"><pre class="highlight"><code>   // 其中file1.js和file2.js是需要转换的es6文件
+   compile-modules convert file1.js file2.js 
+   // -o指定转码后的文件名，如果不指定，则默认在命令行输出转换后代码。out1.js如果不存在则会自动生成
+   $ compile-modules convert file1.js file2.js -o out1.js out2.js
+</code></pre>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>SystemJS
+    <ul>
+      <li>定义: 它是一个垫片库（polyfill），可以在浏览器内加载ES6模块、AMD模块和CommonJS模块，将其转为ES5格式。它在后台调用的是Google的Traceur转码器。</li>
+      <li>使用
+        <ul>
+          <li>首先在网页内载入system.js文件</li>
+          <li>接着使用System.import方法加载模块文件</li>
+        </ul>
+      </li>
+      <li>备注
+        <ul>
+          <li>System.import使用异步加载，返回一个Promise对象，可以针对这个对象编程</li>
+          <li>在使用System.import之前需要在页面引入Google的Traceur转码器</li>
+          <li>加载的时候js文件要有后缀</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="阅读书籍">阅读书籍</h1>
+<ol>
+  <li><a href="http://web.jobbole.com/82238/">UMD</a></li>
+  <li><a href="https://github.com/ModuleLoader/es6-module-loader/issues/95">script type=module</a></li>
+  <li><a href="https://nodejs.org/api/modules.html#modules_cycles">Node官方加载文档-使用CommonJs</a></li>
+  <li><a href="https://github.com/ModuleLoader/es6-module-loader/blob/master/docs/circular-references-bindings.md">Es6-symbol加载-使用Module</a></li>
+  <li><a href="https://github.com/esnext/es6-module-transpiler">module-transpiler</a></li>
+  <li><a href="https://github.com/systemjs/systemjs">SystemJS</a></li>
+  <li><a href="https://blog.gaoqixhb.com/p/55783789cef7e0a008d5d6ef">Google Traceur</a></li>
+  <li><a href="http://es6.ruanyifeng.com/#docs/module">Module</a></li>
+</ol>
+
+
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/peng-lu-27">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href=mailto:rabbit_pl@126.com>
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/RabbitPL">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    <span style="display: block">Copyright &copy; rabbit 2017</span>
+                    <span style="display: block;padding-left: 4em;">Theme by <a href="http://rabbitpl.github.io">rabbit</a>
+                        <iframe
+                                style="margin-left: 2px; margin-bottom:-5px;"
+                                frameborder="0" scrolling="0" width="100px" height="20px"
+                                src="https://ghbtns.com/github-btn.html?user=RabbitPL&repo=rabbitpl.github.io&type=star">
+                        </iframe>
+                    </span>
+                    <span style="display: block">Based on <a href="https://github.com/Huxpro/huxpro.github.io">Hux</a></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'rabbitpl.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

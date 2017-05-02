@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="有点理性，有点感性，有点执着，有点懒散，有点认真，有点浪的一枚普通程序媛">
+    <meta name="keyword"  content="">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>ES6-let学习 - Rabbit Blog</title>
+
+    <link rel="canonical" href="http://localhost:4000/2017/05/02/ES6-let/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">rabbit</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">主页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">关于</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/article/">归档</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">标签</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-2015.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/post-bg-2015.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1 class="article-title">ES6-let学习</h1>
+                    <h2 class="subheading"></h2>
+                    <p class="meta">
+                        <span>发表于: 2017-05-02</span>
+                        <span> 作者: Rabbit</span>
+                        <span class="tags">
+                            
+                                <a class="tag" href="/tags/#ES6" title="ES6">ES6</a>
+                            
+                                <a class="tag" href="/tags/#基础整理" title="基础整理">基础整理</a>
+                            
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="let">let</h1>
+<h2 id="let命令">let命令</h2>
+<h3 id="基本用法">基本用法</h3>
+<ul>
+  <li>
+    <p>ES6新增命令，用于声明变量。用法类似var，但是其声明变量只在let命令所在代码块有效。</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code><span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="err">let</span><span class="w"> </span><span class="err">aLet</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">1;</span><span class="w">
+      </span><span class="err">var</span><span class="w"> </span><span class="err">bVar</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">2;</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="err">console.log(aLet);</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">Uncaught</span><span class="w"> </span><span class="err">ReferenceError:</span><span class="w"> </span><span class="err">aLet</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">not</span><span class="w"> </span><span class="err">defined(…)</span><span class="w">
+  </span><span class="err">console.log(bVar);</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span></code></pre>
+    </div>
+  </li>
+  <li>
+    <p>for循环计数器很适合let命令</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  for (let i = 0; i &lt; 3; i++) {}
+  console.log(i);  // Uncaught ReferenceError: i is not defined(…)
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>考考你?</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // 使用var变量
+  var a = [];
+  for (var i = 0; i &lt; 10; i++) {
+    a[i] = function () {
+      console.log(i);
+    };
+  }
+  a[6]();    // ?结果
+    
+  // 使用let变量
+  var a = [];
+  for (let ii = 0; ii &lt; 10; ii++) {
+    a[ii] = function () {
+      console.log(ii);
+    };
+  }
+  a[6]();    // ?结果 
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="不存在变量提升">不存在变量提升</h3>
+<ul>
+  <li>
+    <p>变量提升:javascript是解释型语言，执行基本分为两个阶段，编译期(预编译)与运行期。在预编译阶段，它是用函数来划分作用域，然后逐层为其以var声明的变量(var变量)与函数定义开辟内存空间，再然后对var变量进行特殊处理，统统赋初始值为undefined。</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  (function(){
+    var str1 = "1";
+    var fun1 = function(){};
+    var str2 = "2";
+    var str3 = "3";
+  })();
+  // 同上代码
+  (function(){
+    var str1,fun1,str2,str3;
+    str1 = "1";
+    fun1 = function(){};
+    str2 = "2";
+    str3 = "3";
+  })();
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>let不会发生’变量提升’，因此，变量一定要在声明后使用，否则报错。</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  console.log(foo); // undefined
+  console.log(bar); // Uncaught ReferenceError: bar is not defined(…)
+  var foo = 2;
+  let bar = 2;
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="暂时性死区">暂时性死区</h3>
+<ul>
+  <li>
+    <p>考考你?</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // 使用var
+  var tmp = 123;
+  if (true) {
+    console.log(tmp);
+    var tmp;
+  }
+  // 使用let,运行结果
+  var tmp = 123;
+  if (true) {
+    console.log(tmp);
+    let tmp;
+  }
+</code></pre>
+    </div>
+  </li>
+  <li>在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”(temporal dead zone，简称TDZ).</li>
+  <li>ES6明确规定，区块中使用let和const声明变量，则会形成封闭作用域，在声明之前使用变量会报错。</li>
+  <li>
+    <p>考考你?</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // 未使用let语句
+  typeof myData;  
+        
+  // 使用let语句
+  {
+      typeof myData;
+      let myData = 'myData';
+  }
+</code></pre>
+    </div>
+    <h3 id="不允许重复声明">不允许重复声明</h3>
+  </li>
+  <li>
+    <p>let不允许在相同作用域内，重复声明同一个变量</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // Uncaught SyntaxError: Unexpected token
+  function fun1() {
+      let num1 = 10;
+      var num1 = 1;
+  }
+  // Uncaught SyntaxError: Unexpected token
+  function fun2() {
+      let num2 = 10;
+      let num2 = 1;
+  }
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>不能在函数内部重新声明参数</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  function func(arg) {
+    let arg; // 报错
+  }
+  function func(arg) {
+    {
+      let arg; // 不报错
+    }
+  }
+</code></pre>
+    </div>
+    <h2 id="块级作用域">块级作用域</h2>
+    <h3 id="es5全局作用域和函数作用域">ES5全局作用域和函数作用域</h3>
+  </li>
+  <li>
+    <p>考考你?</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // 场景一
+  var date = new Date();
+  function fun() {
+    console.log(date);
+    if (false) {
+      var date = "hello world";
+    }
+  }
+  fun();
+        
+  // 场景二
+  var str = 'hello';
+  for (var j = 0; j &lt; str.length; j++) {
+    console.log(str[j]);
+  }
+  console.log(j);
+</code></pre>
+    </div>
+  </li>
+  <li>问题总结:ES5只有全局作用域和函数作用域，没有块级作用域
+    <ul>
+      <li>内层变量可能会覆盖外层变量</li>
+      <li>用来计数的循环变量泄露为全局变量</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="es6块级作用域">ES6块级作用域</h3>
+<ul>
+  <li>let实际上为JavaScript新增了块级作用域.</li>
+  <li>
+    <p>ES6允许块级作用域的任意嵌套,外层作用域无法读取内层作用域的变量</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="err">{let</span><span class="w"> </span><span class="err">insane</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">'Hello</span><span class="w"> </span><span class="err">World'</span><span class="p">}</span><span class="w">
+    </span><span class="err">console.log(insane);</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Uncaught</span><span class="w"> </span><span class="err">ReferenceError:</span><span class="w"> </span><span class="err">insane</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">not</span><span class="w"> </span><span class="err">defined</span><span class="w">
+  </span><span class="err">};</span><span class="w">
+</span></code></pre>
+    </div>
+  </li>
+  <li>
+    <p>内层作用域可以定义外层作用域的同名变量</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="err">let</span><span class="w"> </span><span class="err">insane</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">'Hello</span><span class="w"> </span><span class="err">World';</span><span class="w">
+    </span><span class="err">{let</span><span class="w"> </span><span class="err">insane</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">'Hello</span><span class="w"> </span><span class="err">World'</span><span class="p">}</span><span class="w">
+  </span><span class="err">};</span><span class="w">
+</span></code></pre>
+    </div>
+  </li>
+  <li>
+    <p>块级作用域的出现，使得获得立即执行匿名函数（IIFE）不再必要.</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // IIFE写法
+  (function () {
+    var tmp = ...;
+    ...
+  }());
+        
+  // 块级作用域写法
+  {
+    let tmp = ...;
+    ...
+  }
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h3 id="块级作用域与函数声明">块级作用域与函数声明</h3>
+<ul>
+  <li>ES5规定，函数只能在顶层作用域和函数作用域之中声明，不能在块级作用域声明
+    <ul>
+      <li>浏览器支持在块级作用域中声明函数,因此上面代码可以正常运行,但是在‘严格模式’下会报错</li>
+    </ul>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // 情况一
+  if (true) {
+    function fun() {}
+  }
+        
+  // 情况二
+  try {
+    function fun() {}
+  } catch(e) {
+  }
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>ES6引入了块级作用域，明确允许在块级作用域之中声明函数,并且函数声明语句的行为类似于let，在块级作用域之外不可引用。</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  // ES6严格模式
+  'use strict';
+  if (true) {
+    function f() {}
+  }
+</code></pre>
+    </div>
+    <h1 id="const">Const</h1>
+  </li>
+  <li>定义: 声明一个只读常量，一旦声明，常量的值就不可能改变.</li>
+  <li>注意点
+    <ul>
+      <li>const一旦声明变量，就必须立即初始化，不能留到以后赋值；</li>
+    </ul>
+
+    <p><code class="highlighter-rouge">const COLOR;  //Uncaught SyntaxError: Missing initializer in const declaration</code></p>
+
+    <ul>
+      <li>const与let相同特性
+        <ul>
+          <li>只在声明所在的块级作用域内有效</li>
+        </ul>
+
+        <div class="highlighter-rouge"><pre class="highlight"><code>  if (true) {
+        const MAX = 5;
+  }
+  console.log(MAX);  // Uncaught ReferenceError: MAX is not defined
+</code></pre>
+        </div>
+        <ul>
+          <li>变量不提升</li>
+          <li>存在暂时性死区，只能在声明的位置后面使用</li>
+          <li>不能重复声明</li>
+        </ul>
+      </li>
+      <li>
+        <p>复合类型(Object，Array等)的变量，可对其值进行修改，即const的定义保证了变量名指向地址不变。</p>
+
+        <div class="highlighter-rouge"><pre class="highlight"><code>  // Array
+  const foo = {};
+  foo.prop = 123;
+  console.log(foo);
+  foo = {}; //Uncaught TypeError: Assignment to constant variable.
+		
+  // Object
+  const arr = [];
+  arr.push('Hello'); 
+  arr.length = 0;    
+  arr = ['World'];  // Uncaught TypeError: Assignment to constant variable  
+</code></pre>
+        </div>
+      </li>
+      <li>
+        <p>使用const定义复合型变量达到真正的对象不可变，可以使用Object.freeze()方法冻结对象。</p>
+
+        <div class="highlighter-rouge"><pre class="highlight"><code>  // 冻结对象和属性
+  var constantize = (obj) =&gt; {
+    Object.freeze(obj);
+    Object.keys(obj).forEach( (key, value) =&gt; {
+      if ( typeof obj[key] === 'object' ) {
+        constantize( obj[key] );
+      }
+    });
+  };
+		
+  const person = {name: 'penglu', age: 27};
+  constantize(person);
+  person.name = 'lee'; //无法修改，但是不会报错
+  const arr = ['one', 'two'];
+  constantize(arr);
+  arr.push('three');  // Uncaught TypeError: Can't add property 2, object is not extensible
+</code></pre>
+        </div>
+      </li>
+      <li>let命令、const命令、class命令声明的全局变量，不属于全局对象的属性
+        <ul>
+          <li>ES5之中，全局对象的属性与全局变量是等价的。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>实例</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  const PI = 3.1415926;
+  PI = 123;  // Uncaught TypeError: Assignment to constant variable
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h1 id="参考文章">参考文章</h1>
+<ol>
+  <li><a href="http://m.cnblogs.com/57731/1551270.html?full=1">变量作用域</a></li>
+  <li><a href="http://es6.ruanyifeng.com/?search=generator&amp;x=0&amp;y=0#docs/let">ES6入门</a></li>
+</ol>
+
+
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/peng-lu-27">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href=mailto:rabbit_pl@126.com>
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/RabbitPL">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    <span style="display: block">Copyright &copy; rabbit 2017</span>
+                    <span style="display: block;padding-left: 4em;">Theme by <a href="http://rabbitpl.github.io">rabbit</a>
+                        <iframe
+                                style="margin-left: 2px; margin-bottom:-5px;"
+                                frameborder="0" scrolling="0" width="100px" height="20px"
+                                src="https://ghbtns.com/github-btn.html?user=RabbitPL&repo=rabbitpl.github.io&type=star">
+                        </iframe>
+                    </span>
+                    <span style="display: block">Based on <a href="https://github.com/Huxpro/huxpro.github.io">Hux</a></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'rabbitpl.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

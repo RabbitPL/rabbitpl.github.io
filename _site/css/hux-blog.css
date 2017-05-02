@@ -736,6 +736,15 @@ form .row:first-child .floating-label-form-group {
   background-color: #0085a1;
   border: 1px solid #0085a1;
 }
+.pager li > a {
+  padding: 5px 8px;
+}
+@media only screen and (min-width: 768px) {
+  .pager li > a {
+    font-size: 14px;
+    padding: 5px 8px;
+  }
+}
 .pager .disabled > a,
 .pager .disabled > a:hover,
 .pager .disabled > a:focus,
