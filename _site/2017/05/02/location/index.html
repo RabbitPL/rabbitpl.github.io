@@ -11,9 +11,9 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>关于 - Rabbit Blog</title>
+    <title>Location简介 - Rabbit Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/about/">
+    <link rel="canonical" href="http://localhost:4000/2017/05/02/location/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -128,152 +128,272 @@
 </script>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/about-bg.jpeg')">
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-2015.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/post-bg-2015.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>关于</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">一枚集感性与逗比于一体的女胖子程序媛</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1 class="article-title">Location简介</h1>
+                    <h2 class="subheading"></h2>
+                    <p class="meta">
+                        <span>发表于: 2017-05-02</span>
+                        <span> 作者: Rabbit</span>
+                        <span class="tags">
+                            
+                                <a class="tag" href="/tags/#JS" title="JS">JS</a>
+                            
+                                <a class="tag" href="/tags/#基础整理" title="基础整理">基础整理</a>
+                            
+                        </span>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
-        
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-    			<!-- Chinese Version -->
-<div class="zh post-container">
-
-    
-</div>
-
-    		</div>
-    <!-- Sidebar Container -->
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-                <!-- Featured Tags -->
-                
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">标签</a></h5>
-                    <div class="tags">
-                        
-                            
-                                <a href="/tags/#yeoman" title="yeoman" rel="1">
-                                    yeoman
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#npm" title="npm" rel="1">
-                                    npm
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#学习" title="学习" rel="2">
-                                    学习
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#ES6" title="ES6" rel="4">
-                                    ES6
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#基础整理" title="基础整理" rel="7">
-                                    基础整理
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#JS" title="JS" rel="4">
-                                    JS
-                                </a>
-                            
-                        
-                    </div>
-                </section>
-                
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">自我介绍</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="/img/avatar-rabbit.jpeg" />
-                        
-                        
-                            <p>以为可以努力变成牛逼闪闪的人，然终究发现距牛逼闪闪的人隔着千山万水，那么就做一个爱工作爱生活，爱别人被人爱的普通人～</p>
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
+                <h1 id="location对象">location对象</h1>
+<h2 id="概述">概述</h2>
+<p>BOM对象之一，提供与当前窗口中加载的文档有关的信息，以及还提供一些导航功能。它一方面保存当前文档信息，另一方面将URL解析为可访问独立片段。它既是window对象属性又是document对象属性，即<code class="highlighter-rouge">window.location === document.location</code></p>
 
-                            
-                            <li>
-                                <a target="_blank" href="https://www.zhihu.com/people/peng-lu-27">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href=mailto:rabbit_pl@126.com>
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                            </span>
-                                </a>
-                            </li>
-                            
+<h2 id="对象属性">对象属性</h2>
+<p>location对象实现了<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/URLUtils">URLUtils</a>属性。</p>
+
+<ul>
+  <li>hash
+    <ul>
+      <li>定义: 返回URL中的hash(#号后面0或多个字符)，如果URL不包括hash，则返回空字符串。</li>
+      <li>例子: “#contents”</li>
+    </ul>
+  </li>
+  <li>host
+    <ul>
+      <li>定义: 返回服务器名称和端口(如果有)</li>
+      <li>例子: “www.meituan.com:80”</li>
+    </ul>
+  </li>
+  <li>protocol
+    <ul>
+      <li>定义: 返回页面所使用的协议，通常是’http:’或’https:’</li>
+      <li>例子: “http:”</li>
+    </ul>
+  </li>
+  <li>hostname
+    <ul>
+      <li>定义: 返回不带端口号的服务器名称</li>
+      <li>例子: “www.meituan.com”</li>
+    </ul>
+  </li>
+  <li>href
+    <ul>
+      <li>定义: 返回当前加载页面的完整URL。</li>
+      <li>备注
+        <ul>
+          <li>location对象的toString()方法也返回这个值。</li>
+          <li>返回编码后的地址。</li>
+        </ul>
+      </li>
+      <li>例子: “http://www.meituan.com/”</li>
+    </ul>
+  </li>
+  <li>pathname
+    <ul>
+      <li>定义: 返回URL中的目录和(或)文件名,以’/’开头</li>
+      <li>例子: “/zh-CN/docs/Web/API/URLUtils”</li>
+    </ul>
+  </li>
+  <li>search
+    <ul>
+      <li>定义: 返回URL的查询字符串。该字符串以问号开头。</li>
+      <li>例子: “?q=javascript”</li>
+    </ul>
+  </li>
+  <li>port
+    <ul>
+      <li>定义: 返回URL中指定的端口号。如果URL中不包含端口号，则这个属性返回空字符串。</li>
+      <li>例子: “8080”</li>
+    </ul>
+  </li>
+  <li>origin
+    <ul>
+      <li>定义: 返回URL的协议、服务器以及端口</li>
+      <li>例子: ‘http://www.meituan.com:8080’</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>// 查询字符串参数
+function getQueryStringArgs(){
+	// 获取去掉?的查询参数
+	var qs = (location.search.length &gt; 0 ? location.search.substring(1) : "");
+	var args = {}; //数据对象
+	var items = qs.length &gt; 0 ? qs.split('&amp;') : [];
+	for(var i = 0; i &lt; items.length; i++){
+		args[items[i].split('=')[0]] = decodeURIComponent(items[i].split('=')[1]);
+		console.log(items[i].split('=')[0] + ':' + decodeURIComponent(items[i].split('=')[1]));
+	}
+	return args;
+}
 
 
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/RabbitPL">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
-                <!-- Friends Blog -->
-                
-    		</div>
-        
-	</div>
+// URLSearchParams:keys(),values(),entries()
+var paramsObj = new URLSearchParams(location.search);
+paramsObj.toString();
+for(var pair of paramsObj.entries()) {
+	console.log(pair[0]+ ', '+ pair[1]);
+};
+</code></pre>
 </div>
+
+<h2 id="对象方法">对象方法</h2>
+<p>location对象实现了<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/URLUtils">URLUtils</a>方法。除toString之外这些方法都用来改变浏览器位置。</p>
+
+<ul>
+  <li>assign
+    <ul>
+      <li>定义: 加载URL的内容资源到这个Location对象所关联的对象上。</li>
+      <li>使用: location.assign(url)</li>
+      <li>备注
+        <ul>
+          <li>打开一个新URL并在浏览器里是记录中生成一条记录。</li>
+          <li><code class="highlighter-rouge">location.href='urlX'</code>和<code class="highlighter-rouge">window.location='urlX'</code>会以url为’urlX’调用assign()方法。即<code class="highlighter-rouge">window.location='www.meituan.com'和location.href='www.meituan.com'</code>效果相同</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>reload
+    <ul>
+      <li>定义: 重新加载来自当前URL的资源。</li>
+      <li>使用: reload(flag)</li>
+      <li>备注
+        <ul>
+          <li>其具有一个可选参数,类型为boolean,该参数为true时会从服务器加载数据进行刷新，参数为false时浏览器从缓存加载页面。</li>
+          <li>如果不传递参数，则页面会以最有效的方式重新加载(即如果页面自上次请求以来并没有改变过则从缓存重新加载)。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>replace
+    <ul>
+      <li>定义: 用给定的URL替换当前的资源。</li>
+      <li>使用: replace(url)</li>
+      <li>备注
+        <ul>
+          <li>替换的新页面不会保存在history中。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>toString: 返回一个字符串，包含整个URL。效果同location.href,但不能修改location的值。</li>
+</ul>
+
+<h3 id="ps">PS</h3>
+<ul>
+  <li>改变浏览器位置方法一般常用location.href</li>
+  <li>在IE8，FF1，Safari 2+，Opera 9+ 和Chrome中，修改hash会在浏览器的历史记录中生成一条新纪录。</li>
+  <li>修改location中的其他属性也会改变当前加载的页面。并且每次修改location属性(除hash外)页面都会以新URL重新加载。</li>
+  <li>
+    <p>安全设置如(CORS:跨域资源共享)可能会限制实际加载页面。</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  location.hash = '#section1';
+  location.search = '?q=javascript';
+  location.hostname = 'www.meituan.com';
+  location.pathname = 'mydir'; 	location.port = 8080;
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h2 id="windowlocation与documentlocation">window.location与document.location</h2>
+<ul>
+  <li>
+    <p>定义: window.location和document.location是一个只读属性，返回一个location对象，包含文档当前地址的相关信息。但是可以赋值给window.location。</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>   window.location = 'http://www.meituan.com';   // location = 'http://www.meituan.com'; 
+   alert(window.location); 
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>语法: <code class="highlighter-rouge">var oldLocation = window.location;  window.location = newLocation</code></p>
+
+    <ul>
+      <li>oldLocation是一个location对象，提供了当前文档URL的相关信息以及几个用来改变这个URL的方法。</li>
+      <li>newLocation可以是一个location对象，但通常是字符串，指定要跳转的URL地址。</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="参考文献">参考文献</h1>
+<ol>
+  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Location">location</a></li>
+  <li><a href="https://book.douban.com/subject/10546125/">JS高级程序设计</a></li>
+</ol>
+
+
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->

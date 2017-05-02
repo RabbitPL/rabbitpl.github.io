@@ -11,9 +11,9 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>关于 - Rabbit Blog</title>
+    <title>weakSet与WeakMap简介 - Rabbit Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/about/">
+    <link rel="canonical" href="http://localhost:4000/2017/05/02/WeakSet/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -128,152 +128,250 @@
 </script>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/about-bg.jpeg')">
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-2015.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/post-bg-2015.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>关于</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">一枚集感性与逗比于一体的女胖子程序媛</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1 class="article-title">weakSet与WeakMap简介</h1>
+                    <h2 class="subheading"></h2>
+                    <p class="meta">
+                        <span>发表于: 2017-05-02</span>
+                        <span> 作者: Rabbit</span>
+                        <span class="tags">
+                            
+                                <a class="tag" href="/tags/#ES6" title="ES6">ES6</a>
+                            
+                                <a class="tag" href="/tags/#基础整理" title="基础整理">基础整理</a>
+                            
+                        </span>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
-        
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-    			<!-- Chinese Version -->
-<div class="zh post-container">
-
-    
-</div>
-
-    		</div>
-    <!-- Sidebar Container -->
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-                <!-- Featured Tags -->
-                
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">标签</a></h5>
-                    <div class="tags">
-                        
-                            
-                                <a href="/tags/#yeoman" title="yeoman" rel="1">
-                                    yeoman
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#npm" title="npm" rel="1">
-                                    npm
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#学习" title="学习" rel="2">
-                                    学习
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#ES6" title="ES6" rel="4">
-                                    ES6
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#基础整理" title="基础整理" rel="7">
-                                    基础整理
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#JS" title="JS" rel="4">
-                                    JS
-                                </a>
-                            
-                        
-                    </div>
-                </section>
-                
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">自我介绍</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="/img/avatar-rabbit.jpeg" />
-                        
-                        
-                            <p>以为可以努力变成牛逼闪闪的人，然终究发现距牛逼闪闪的人隔着千山万水，那么就做一个爱工作爱生活，爱别人被人爱的普通人～</p>
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
+                <h1 id="weakset">WeakSet</h1>
+<h2 id="weakset与set">WeakSet与Set</h2>
+<h3 id="相同-不重复的值的集合">相同: 不重复的值的集合</h3>
+<h3 id="不同">不同</h3>
+<ul>
+  <li>WeakSet的成员只能是对象</li>
+</ul>
 
-                            
-                            <li>
-                                <a target="_blank" href="https://www.zhihu.com/people/peng-lu-27">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href=mailto:rabbit_pl@126.com>
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                            </span>
-                                </a>
-                            </li>
-                            
-
-
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/RabbitPL">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
-                <!-- Friends Blog -->
-                
-    		</div>
-        
-	</div>
+<div class="highlighter-rouge"><pre class="highlight"><code>var ws = new WeakSet();
+ws.add(1);  // TypeError: Invalid value used in weak set
+ws.add(Symbol()); // Uncaught TypeError: Invalid value used in weak set
+</code></pre>
 </div>
+<ul>
+  <li>WeakSet中的对象都是弱引用，即垃圾回收机制不考虑WeakSet对该对象的引用
+    <ul>
+      <li>如果其他对象都不再引用该对象，那么垃圾回收机制会自动回收该对象所占用的内存。</li>
+      <li>无法引用WeakSet的成员，因此WeakSet是不可遍历的。</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="weakset使用与方法">WeakSet使用与方法</h2>
+<h3 id="创建">创建</h3>
+<ul>
+  <li>
+    <p>WeakSet是一个构造函数，可以使用new命令，创建WeakSet数据结构。<code class="highlighter-rouge">var ws = new WeakSet();
+</code></p>
+  </li>
+  <li>WeakSet可以接受一个数组或类似数组的对象作为参数。该数组的所有成员，都会自动成为WeakSet实例对象的成员(任何具有iterable接口的对象，都可以作为WeakSet的参数)。<strong>WeakSet的弱引用如何测试？</strong>
+    <div class="highlighter-rouge"><pre class="highlight"><code>var a = [[1,2], [3,4]];
+var ws = new WeakSet(a);
+</code></pre>
+    </div>
+  </li>
+  <li>WeakSet的成员是数组成员，而不是数组本身。这意味着，数组的成员只能是对象。</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var b = [3, 4];
+var ws = new WeakSet(b);  // Uncaught TypeError: Invalid value used in weak set
+</code></pre>
+</div>
+
+<h3 id="方法">方法</h3>
+<ul>
+  <li>WeakSet.prototype.add(value): 向WeakSet实例添加一个新成员。</li>
+  <li>WeakSet.prototype.delete(value): 清除WeakSet实例的指定成员。返回boolean表示是否成功。</li>
+  <li>WeakSet.prototype.has(value): 返回一个布尔值，表示某个值是否存在于WeakSet实例中。</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var ws = new WeakSet();
+var obj = {};
+var foo = {};
+ws.add(window);
+ws.add(obj);
+console.log(ws.has(window)); // true
+console.log(ws.has(foo));    // false
+console.log(ws.delete(window));  // true
+console.log(ws.has(window));    // false
+</code></pre>
+</div>
+
+<h3 id="特性">特性</h3>
+<ul>
+  <li>WeakSet没有size属性，没有办法遍历它的成员.
+    <ul>
+      <li>WeakSet不能遍历，是因为成员都是弱引用，随时可能消失，遍历机制无法保证成员的存在，很可能刚刚遍历结束，成员就取不到了</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var ws = new WeakSet();
+console.log(ws.size);   // undefined
+console.log(ws.forEach);  // undefined
+</code></pre>
+</div>
+<ul>
+  <li>WeakSet的一个用处，是储存DOM节点，而不用担心这些节点从文档移除时，会引发内存泄漏。<strong>查下如何防止内存消失，啥是内存泄漏</strong></li>
+</ul>
+
+<h1 id="weakmap">WeakMap</h1>
+<h2 id="weakmap与map区别">WeakMap与Map区别</h2>
+<ul>
+  <li>它只接受对象作为键名(null除外)</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var map = new WeakMap()
+map.set(1, 2);  // Uncaught TypeError: Invalid value used as weak map key
+</code></pre>
+</div>
+<ul>
+  <li>键名所指向的对象不计入垃圾回收机制(弱引用)，其所对应的对象可能会被自动回收，当对象被回收后,WeakMap自动移除对应的键值对.</li>
+  <li>当对象被回收后，WeakMap自动移除对应的键值对。</li>
+</ul>
+
+<h2 id="weakmap使用场合与目的">WeakMap使用场合与目的</h2>
+<ul>
+  <li>WeakMap的专用场合就是，它的键所对应的对象，可能会在将来消失。</li>
+  <li>WeakMap结构有助于防止内存泄漏</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>// 这demo怎么测试呀?好头疼
+var wm = new WeakMap();
+var element = document.getElementById('spchx');
+wm.set(element, "Original");
+wm.get(element);  // "Original"
+element.parentNode.removeChild(element);
+var temp = element;
+element = null;
+wm.get(temp); // "Original"
+
+// 使用Map
+var wm = new Map();
+var element = document.getElementsByTagName("div");
+wm.set(element, "Original");
+console.log(wm.get(element)); // "Original"
+var temp = element;
+element = null;
+wm.get(temp); // 
+</code></pre>
+</div>
+<h2 id="weakmap特性与应用">WeakMap特性与应用</h2>
+<h3 id="基本特性">基本特性</h3>
+<ul>
+  <li>没有遍历操作(没有key()、values()、entries()方法，也没有size属性)</li>
+  <li>无法清空,即不支持clear方法.
+    <ul>
+      <li>这与WeakMap的键不被计入引用，被垃圾回收机制忽略有关。</li>
+    </ul>
+  </li>
+  <li>WeakMap只有四个方法:get()、set()、has()、delete()</li>
+</ul>
+
+<h3 id="典型应用">典型应用</h3>
+<ul>
+  <li>WeakMap应用的典型场合就是DOM节点作为键名。</li>
+  <li>WeakMap的另一个用处是部署私有属性。</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>let myElement = document.getElementById('logo-sub');
+let myWeakmap = new WeakMap();
+
+myWeakmap.set(myElement, {timesClicked: 0});
+
+myElement.addEventListener('click', function() {
+  let logoData = myWeakmap.get(myElement);
+  logoData.timesClicked++;
+  myWeakmap.set(myElement, logoData);
+}, false);
+</code></pre>
+</div>
+
+<ol>
+  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management">内存管理</a></li>
+</ol>
+
+
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="有点理性，有点感性，有点执着，有点懒散，有点认真，有点浪的一枚普通程序媛">
+    <meta name="keyword"  content="">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>History简介 - Rabbit Blog</title>
+
+    <link rel="canonical" href="http://localhost:4000/2017/05/02/history/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">rabbit</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">主页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">关于</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/article/">归档</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">标签</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-2015.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/post-bg-2015.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1 class="article-title">History简介</h1>
+                    <h2 class="subheading"></h2>
+                    <p class="meta">
+                        <span>发表于: 2017-05-02</span>
+                        <span> 作者: Rabbit</span>
+                        <span class="tags">
+                            
+                                <a class="tag" href="/tags/#JS" title="JS">JS</a>
+                            
+                                <a class="tag" href="/tags/#基础整理" title="基础整理">基础整理</a>
+                            
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="history对象">History对象</h1>
+<h2 id="概述">概述</h2>
+<p>浏览器窗口有一个history对象，用来保存浏览历史。history对象提供了一些列的方法和属性，允许在浏览器之间移动。</p>
+
+<ul>
+  <li>back(): 移动到上一个访问页面，等同于浏览器的后退键。
+    <ul>
+      <li>返回上一页时，页面通常是从浏览器缓存之中加载，而不是重新要求服务器发送新的网页。</li>
+    </ul>
+  </li>
+  <li>forward(): 移动到下一个访问页面，等同于浏览器的前进键。</li>
+  <li>go(): 接受一个整数作为参数，移动到该整数指定的页面，比如go(1)相当于forward()，go(-1)相当于back()。
+    <ul>
+      <li>history.go(0): 刷新当前页面</li>
+      <li>history.go(str): 可以接受一个字符串str,浏览器会跳转到历史记录中包含该字符串的第一个位置(可能前进，可能后退)，具体要看哪个位置最近，如果历史记录中不包含该字符串，则该方法什么都不做
+        <ul>
+          <li>参考资料:https://msdn.microsoft.com/en-us/library/ms536443(v=vs.85).aspx</li>
+          <li>历史纪录指的就是url，<strong>不能跨域</strong></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>length: 保存历史记录的数量，这数量包含所有历史记录。
+    <ul>
+      <li>对于加载到窗口、标签页或框架中的第一个页面而言，history.length等于0</li>
+      <li>Internet Explorer和Opera从0开始，而Firefox、Chrome和Safari从1开始。</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="注意点">注意点</h2>
+<ul>
+  <li>如果移动的位置超出了访问历史的边界，back,forward,go三个方法并不报错，而是默默的失败</li>
+  <li>当页面的URL改变时,就会生成一条历史记录。在IE8及更高版本、Opera、Firefox、Safari3及更高版本及Chrome中，这里所有的改变包括URL中的hash的变化.因此，设置location.hash会在这些浏览器中生成一条新的历史记录</li>
+  <li>
+    <p>如果窗口包涵多个子窗口，子窗口的浏览历史会按时间顺序穿插在主窗口的历史中</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>      &lt;form name="form1" id="form1"&gt;
+          &lt;input type="text" name="username" id="username"/&gt;
+          &lt;button onclick="clickFn()"&gt;改变地址&lt;/button&gt;
+      &lt;/form&gt;
+      &lt;iframe src="pjax.html" width=100% style="margin-top: 100px;" name="test"&gt;
+      &lt;/iframe&gt;
+      &lt;script&gt;
+          var addr = ['https://www.baidu.com', "http://www.meituan.com", "http://www.taobao.com"];
+          var i = 0;
+          function clickFn(){
+            if( i &gt; 2){
+                i = 0;
+            }
+            window.frames['test'].location.href = addr[i];
+            i++;
+            document.getElementById('username').value = history.length;
+          }
+      &lt;/script&gt;
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h2 id="html5中history的新方法">HTML5中history的新方法</h2>
+<p>所有主流浏览器都支持这两种方法(包括IE10)。</p>
+
+<p>可以使用一下代码来检查当前浏览器是否支持History API</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>if (!!(window.history &amp;&amp; history.pushState)){
+  // 支持History API
+} else {
+  // 不支持
+}
+</code></pre>
+</div>
+
+<h3 id="historypushstate">history.pushState()</h3>
+<ul>
+  <li>定义: 用来在浏览历史中逐条添加纪录</li>
+  <li>参数介绍
+    <ul>
+      <li>state(状态对象): 与指定网址相关的状态对象，popstate事件触发时(用户导航到新建的状态)，该对象会传入回调函数。如果不需要这个对象，此处可以填null。</li>
+      <li>title: 新页面的标题，但是所有浏览器目前都忽略这个值，因此这里可以填null。</li>
+      <li>url: 新的历史记录条目的网址。浏览器的地址栏将显示这个网址。但是调用pushState方法之后不会刷新页面。该参数可选，不指定的话则为文档当前URL。</li>
+    </ul>
+  </li>
+  <li>备注
+    <ul>
+      <li>任何可序列化的对象都可以被当做状态对象。FireFox浏览器会把状态对象保存到用户的硬盘，用户重启浏览器之后会被还原，因此强行限制状态对象的大小为640k。如果传入pushState()方的状态对象超标，则该方法会抛出异常。如果需要存储很大的数据，建议使用sessionStorage或localStorage。</li>
+      <li>新的URL不一定是绝对路径，如果是相对路径，则以当前URL为基准，因此传入的URL与当前URL应该是同源的，否则pushState会抛出异常。</li>
+      <li>pushState()方法永远不会触发hashchange事件，即便新的地址只变更了hash.</li>
+    </ul>
+  </li>
+  <li>与window.location的不同
+    <ul>
+      <li>新URL可以是任意的同源URL，而window.location只有仅修改hash才能保证停留在相同的document中。</li>
+      <li>根据个人需要确定是否修改URL。相反，设置window.location=”#foo”，只有在当前hash值不是foo时才创建一条新历史记录。</li>
+      <li>可以在新的历史记录条目中添加抽象数据.如果使用基于hash的方法，只能把相关数据转码成一个很短的字符串。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="windowonpopstate">window.onpopstate</h3>
+<p>window.onpopstate是popstate事件在window对象上的事件句柄。当前活动历史项改变会触发popstate事件。调用history.pushState()创建新历史项，或调用history.replaceState()替换新的历史项,那么popstate事件的state属性会包含历史项状态对象(state)的拷贝。</p>
+
+<ul>
+  <li>备注
+    <ul>
+      <li>调用history.pushState()和history.replaceState()不会触发popstate事件，只有在浏览器操作时会触发该事件，如用户点击回退和前进按钮，或通过js调用history.back()函数。</li>
+      <li>不同浏览器在加载页面时处理popstate事件的形式存在差异。页面加载时Chrome和Safari通常会触发popstate事件(低版本)，但是Firefox和IE浏览器不会。</li>
+    </ul>
+  </li>
+  <li>实例</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>window.onpopstate = function(event) {
+   alert("location: " + document.location + ", state: " + 	JSON.stringify(event.state));
+};
+history.pushState({page: 1}, "title 1", "?page=1");
+history.pushState({page: 2}, "title 2", "?page=2");
+history.pushState({page: 3}, "title 3", "?page=3");
+history.replaceState({page: 4}, "title 3", "?page=4");
+history.back();
+history.back(); 
+</code></pre>
+</div>
+<h3 id="historyreplacestate">history.replaceState()</h3>
+<ul>
+  <li>定义: 用来在浏览历史中修改纪录.操作类似pushState()</li>
+  <li>备注
+    <ul>
+      <li>当更新当前历史记录条目的状态对象或URL时，使用replaceState()方法特别合适</li>
+      <li>替换的是当前历史对象</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="historystate属性">history.state属性</h3>
+<ul>
+  <li>定义:history.state属性保存当前页面的state对象。</li>
+  <li>
+    <p>实例</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>  history.pushState({page: 1}, "title 1", "?page=1");
+  history.state
+</code></pre>
+    </div>
+  </li>
+  <li>备注
+    <ul>
+      <li>页面加载时，可能包含一个非空状态对象。例如,如果页面中使用pushState或replaceState方法设置了一个状态对象，然后用户重启浏览器。</li>
+      <li>页面重新加载会触发onload事件，但是不会触发popstate事件，通过history.state属性可以获取一个与popstate事件触发时得到一样的状态对象。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="备注">备注</h3>
+<ul>
+  <li>仅仅调用pushState方法或replaceState方法 ，并不会触发window.onpopstate事件，只有用户点击浏览器倒退按钮和前进按钮，或者使用JavaScript调用back、forward、go方法时才会触发。</li>
+  <li>window.onpopstate事件只针对同一个文档，如果浏览历史的切换，导致加载不同的文档，该事件也不会触发。</li>
+  <li>使用的时候，可以为popstate事件指定回调函数。这个回调函数的参数是一个event事件对象，它的state属性指向pushState和replaceState方法为当前url所提供的状态对象</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>window.onpopstate = function(event) {
+  console.log("location: " + document.location);
+  console.log("state: " + JSON.stringify(event.state));
+};
+// 或者
+window.addEventListener('popstate', function(event) {  
+  console.log("location: " + document.location);
+  console.log("state: " + JSON.stringify(event.state));  
+});
+</code></pre>
+</div>
+
+<ul>
+  <li>当页面第一次加载的时候，在onload事件发生后，Firefox和IE浏览器不会以及大多数(最新版本)Safari和Chrome浏览器都不会触发window.onpopstate事件。iphone手机8.4.1版本打开浏览器会触发window.onpopstate事件，而9.3.5版本则已经无法触发。</li>
+</ul>
+
+<h2 id="urlsearchparams-api">URLSearchParams API</h2>
+<p>URLSearchParams API用于处理URL之中的查询字符串，即问号之后的部分。</p>
+
+<h3 id="用来操作某个参数的方法">用来操作某个参数的方法</h3>
+<ul>
+  <li>has(): 返回一个布尔值，表示是否具有某个参数</li>
+  <li>get(): 返回指定参数的第一个值</li>
+  <li>getAll(): 返回一个数组，成员是指定参数的所有值</li>
+  <li>set(): 设置指定参数</li>
+  <li>delete(): 删除指定参数</li>
+  <li>append(): 在查询字符串之中，追加一个键值对</li>
+  <li>toString(): 返回整个查询字符串</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var paramsString = "q=URLUtils.searchParams&amp;topic=api"
+var searchParams = new URLSearchParams(paramsString);
+console.log(searchParams.has('topic')); // true
+console.log(searchParams.get('topic')); // "api"
+console.log(searchParams.getAll('topic')); // ["api"]
+console.log(searchParams.get('foo'));  // null
+searchParams.set('foo', 2);
+console.log(searchParams.get('foo')); // 2
+searchParams.append('topic', 'webdev');
+console.log(searchParams.toString()); //"q=URLUtils.searchParams&amp;topic=api&amp;foo=2&amp;topic=webdev"
+searchParams.append('foo', 3);
+console.log(searchParams.getAll('foo')); // [2, 3]
+searchParams.delete('topic');
+console.log(searchParams.toString()); // "q=URLUtils.searchParams&amp;foo=2&amp;foo=3"
+</code></pre>
+</div>
+
+<h3 id="用来遍历所有参数的方法">用来遍历所有参数的方法</h3>
+<p>以下三个函数，返回的都是Iterator对象</p>
+
+<ul>
+  <li>keys(): 遍历所有参数名</li>
+  <li>values(): 遍历所有参数值</li>
+  <li>entries(): 遍历所有参数的键值对
+    <ul>
+      <li>在Chrome浏览器之中，URLSearchParams实例本身就是Iterator对象，与entries方法返回值相同.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>for(var key of searchParams.keys()) {
+  console.log(key);   // q; foo; foo
+}
+for(var value of searchParams.values()) {
+  console.log(value);  // URLUtils.searchParams;  2;  3
+}
+for(var pair of searchParams.entries()) {
+  console.log(pair[0]+ ', '+ pair[1]);  // q, URLUtils.searchParams; foo, 2; foo, 2
+}
+// URLSearchParams实例本身就是Iterator对象
+for (var p of searchParams) {
+  console.log(p);
+}
+</code></pre>
+</div>
+
+<h2 id="实例">实例</h2>
+<h3 id="pjaxpushstate--ajax">pjax(pushState + ajax)</h3>
+<ul>
+  <li>基本思路
+    <ul>
+      <li>链接(点击)–&gt;ajax刷新数据+使用pushState改变url</li>
+      <li>popstate事件–&gt;刷新数据</li>
+    </ul>
+  </li>
+  <li>Demo</li>
+</ul>
+
+<h3 id="ngrouter">ngRouter</h3>
+
+<p><code class="highlighter-rouge">$browser.onUrlChange(callback) --&gt; $locationChangeStart --&gt; $routeChangeStart --&gt; 动态编译模版插入</code></p>
+
+<p><strong>项目中使用ng-router,使用的pushState动态改变url，因此前进或后退操作不会造成页面加载</strong></p>
+
+<h1 id="参考文献">参考文献</h1>
+<ul>
+  <li><a href="http://www.cnblogs.com/xing901022/p/5154358.html">Angular路由</a></li>
+  <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Events/popstate">popstate</a></li>
+  <li><a href="https://developer.mozilla.org/zh-CN/docs/DOM/Manipulating_the_browser_history">HTML5中history对象</a></li>
+  <li><a href="http://javascript.ruanyifeng.com/bom/history.html">URLSearchParams</a></li>
+  <li><a href="http://www.zhangxinxu.com/wordpress/2013/06/html5-history-api-pushstate-replacestate-ajax/">PJAX</a></li>
+  <li><a href="https://link.zhihu.com/?target=https%3A//github.com/welefen/pjax">pjax</a></li>
+  <li><a href="http://caniuse.com/#search=pushstate">浏览器支持情况</a></li>
+</ul>
+
+
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/peng-lu-27">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a target="_blank" href=mailto:rabbit_pl@126.com>
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/RabbitPL">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    <span style="display: block">Copyright &copy; rabbit 2017</span>
+                    <span style="display: block;padding-left: 4em;">Theme by <a href="http://rabbitpl.github.io">rabbit</a>
+                        <iframe
+                                style="margin-left: 2px; margin-bottom:-5px;"
+                                frameborder="0" scrolling="0" width="100px" height="20px"
+                                src="https://ghbtns.com/github-btn.html?user=RabbitPL&repo=rabbitpl.github.io&type=star">
+                        </iframe>
+                    </span>
+                    <span style="display: block">Based on <a href="https://github.com/Huxpro/huxpro.github.io">Hux</a></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'rabbitpl.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
