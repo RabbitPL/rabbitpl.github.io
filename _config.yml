@@ -13,7 +13,6 @@ baseurl: ""         # for example, '/blog' if your blog hosted on 'host/blog'
 # SNS settings
 RSS: false
 github_username:    RabbitPL
-zhihu_username:     'peng-lu-27'
 email_username:     'rabbit_pl@126.com'
 
 
@@ -73,20 +72,3 @@ featured-tags: true                     # whether or not using Feature-Tags
 featured-condition-size: 0              # A tag will be featured if the size of it is more than this condition value
 
 
-
-# Friends
-# friends: [
-#     {
-#         title: "Foo",
-#         href: "#"
-#     },{
-#         title: "Bar",
-#         href: "#"
-#     },{
-#         title: "Example Friends",
-#         href: "#"
-#     },{
-#         title: "It helps SEO",
-#         href: "#"
-#     }
-# ]

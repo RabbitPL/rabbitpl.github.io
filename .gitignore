@@ -61,3 +61,6 @@ Temporary Items
 *.svn-base
 .svn
 .svn/wc.db
+
+
+cacert.pem
