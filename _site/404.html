@@ -151,41 +151,47 @@
 
     <!-- Footer -->
 <footer>
-    <div id="comment-container" class="container"></div>
-    <div class="container">
+    <div class="container" style="margin-top: -50px;">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
+            <div class=" col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div id="comment-container" style=" border-top: 1px solid #e6ebf1; "></div>
+            </div>
+        </div>
+    </div>
+    <div class=" container ">
+        <div class="row ">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <ul class="list-inline text-center ">
                       
                     <li>
-                        <a target="_blank" href=mailto:rabbit_pl@126.com>
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                        <a target="_blank " href=mailto:rabbit_pl@126.com>
+                            <span class="fa-stack fa-lg ">
+                                <i class="fa fa-circle fa-stack-2x "></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse "></i>
                             </span>
                         </a>
                     </li>
                      
                     <li>
-                        <a target="_blank" href="https://github.com/RabbitPL">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                        <a target="_blank " href="https://github.com/RabbitPL ">
+                            <span class="fa-stack fa-lg ">
+                                <i class="fa fa-circle fa-stack-2x "></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse "></i>
                             </span>
                         </a>
                     </li>
                     
                 </ul>
-                <p class="copyright text-muted">
-                    <span style="display: block">Copyright &copy; rabbit 2017</span>
-                    <span style="display: block;padding-left: 4em;">Theme by <a href="http://rabbitpl.github.io">rabbit</a>
+                <p class="copyright text-muted ">
+                    <span style="display: block ">Copyright &copy; rabbit 2017</span>
+                    <span style="display: block;padding-left: 4em; ">Theme by <a href="http://rabbitpl.github.io ">rabbit</a>
                         <iframe
-                                style="margin-left: 2px; margin-bottom:-5px;"
-                                frameborder="0" scrolling="0" width="100px" height="20px"
-                                src="https://ghbtns.com/github-btn.html?user=RabbitPL&repo=rabbitpl.github.io&type=star">
+                                style="margin-left: 2px; margin-bottom:-5px; "
+                                frameborder="0 " scrolling="0 " width="100px " height="20px "
+                                src="https://ghbtns.com/github-btn.html?user=RabbitPL&repo=rabbitpl.github.io&type=star ">
                         </iframe>
                     </span>
-                    <span style="display: block">Based on <a href="https://github.com/Huxpro/huxpro.github.io">Hux</a></span>
+                    <span style="display: block ">Based on <a href="https://github.com/Huxpro/huxpro.github.io ">Hux</a></span>
                 </p>
             </div>
         </div>
@@ -193,16 +199,16 @@
 </footer>
 
 <!-- jQuery -->
-<script src=" /js/jquery.min.js "></script>
+<script src=" /js/jquery.min.js  "></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src=" /js/bootstrap.min.js "></script>
+<script src=" /js/bootstrap.min.js  "></script>
 
 <!-- Custom Theme JavaScript -->
-<script src=" /js/hux-blog.min.js "></script>
+<script src=" /js/hux-blog.min.js  "></script>
 
 <!-- GitComment -->
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js "></script>
 <script>
     var gitment = new Gitment({
         id: location.path,
@@ -213,7 +219,11 @@
             client_secret: 'c48565a8bd5b6e78931687ce7bbe61a1945065aa',
         },
     });
-    gitment.render(document.getElementById('comment-container'));
+    var url = location.href;
+    // 特殊处理，只有文章页才显示
+    if (/\/\d{4}\/\d{2}\/\d{2}/.test(url)) {
+        gitment.render(document.getElementById('comment-container'));
+    }
 </script>
 
 <!-- async load function -->
@@ -244,11 +254,11 @@
 -->
 <!--
     <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js ", function(){
             hljs.initHighlightingOnLoad();
         })
     </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css " rel="stylesheet ">
 -->
 
 
@@ -256,7 +266,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if ($('#tag_cloud').length !== 0) {
-        async("/js/jquery.tagcloud.js", function() {
+        async("/js/jquery.tagcloud.js ", function() {
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {
@@ -272,8 +282,8 @@
 
 <!--fastClick.js -->
 <script>
-    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function() {
-        var $nav = document.querySelector("nav");
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js ", function() {
+        var $nav = document.querySelector("nav ");
         if ($nav) FastClick.attach($nav);
     })
 </script>
@@ -314,9 +324,9 @@
     // Originial
     var _hmt = _hmt || [];
     (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?" + _baId;
-        var s = document.getElementsByTagName("script")[0];
+        var hm = document.createElement("script ");
+        hm.src = "//hm.baidu.com/hm.js? " + _baId;
+        var s = document.getElementsByTagName("script ")[0];
         s.parentNode.insertBefore(hm, s);
     })();
 </script>
